@@ -1,0 +1,25 @@
+<template>
+  <div id="taskList">
+    <ul>
+      <li v-for="(task, index) in tasks">
+        {{ task.taskName }}　({{ formatTaskTime(task.from) }} ～ {{ formatTaskTime(task.to) }})
+        <button v-on:click="deleteTask(index)">やめる</button>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'TaskList',
+    props: ['tasks'],
+    methods: {
+      formatTaskTime: function (time) {
+        return time.substr(0, 2) + '：' + time.substr(2)
+      },
+      deleteTask: function (index) {
+        this.tasks.splice(index, 1)
+      }
+    }
+  }
+</script>
