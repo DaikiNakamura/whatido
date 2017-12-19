@@ -42,10 +42,12 @@
         }
         let from = this.fromHour + this.fromMinute
         let to = this.toHour + this.toMinute
+        let color = '#' + Math.floor(Math.random() * 16777215).toString(16)
         this.$emit('set', {
           taskName: this.taskName,
           from: from,
-          to: to
+          to: to,
+          color: color
         })
         this.taskName = ''
       },

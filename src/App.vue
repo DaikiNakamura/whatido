@@ -4,7 +4,7 @@
     <TaskList v-bind:tasks="tasks" />
     <Clock />
     <div class="visualTaskArea">
-      <VisualTask v-for="task in tasks" v-bind:task="task" class="visualTask"/>
+      <VisualTask v-bind:tasks="tasks" class="visualTask"/>
     </div>
   </div>
 </template>
