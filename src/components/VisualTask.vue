@@ -46,7 +46,8 @@
         let startMinutes = parseInt(task.from.substr(2))
         let startAngle = (startHour * 30 - 90) + (30 / 60 * startMinutes)
         let sr = startAngle * Math.PI / 180
-        startHour = parseInt(task.to.substr(0, 2))
+        startHour = startHour > parseInt(task.to.substr(0, 2)) ? parseInt(task.to.substr(0, 2)) + 12 : parseInt(task.to.substr(0, 2))
+        console.log(startHour)
         startMinutes = parseInt(task.to.substr(2))
         let endAngle = (startHour * 30 - 90) + (30 / 60 * startMinutes)
         let er = endAngle * Math.PI / 180
