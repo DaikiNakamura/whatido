@@ -1,7 +1,7 @@
 <template>
   <div id="taskList">
     <ul>
-      <li v-for="(task, index) in tasks">
+      <li class="task" v-for="(task, index) in tasks">
         {{ task.taskName }}　({{ formatTaskTime(task.from) }} ～ {{ formatTaskTime(task.to) }})
         <button v-on:click="deleteTask(index)" class="deleteButton" :style="{ backgroundColor: task.color }">DELETE</button>
       </li>
@@ -27,5 +27,8 @@
 <style>
   .deleteButton {
     border: 2px solid #000;
+  }
+  .task {
+    font-size: 1.3em;
   }
 </style>

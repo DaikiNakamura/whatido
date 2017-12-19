@@ -48,6 +48,9 @@
           color: color
         })
         this.taskName = ''
+        this.fromHour = this.toHour
+        this.fromMinute = this.toMinute
+        this.toHour = this.toHour === '12' ? '01' : ('00' + (parseInt(this.toHour) + 1)).slice(-2)
       }
     }
   }
