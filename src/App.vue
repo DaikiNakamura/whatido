@@ -1,10 +1,22 @@
 <template>
   <div id="app">
-    <InputTask @set="addTask"/>
-    <TaskList v-bind:tasks="tasks" />
-    <Clock />
-    <div class="visualTaskArea">
-      <VisualTask v-bind:tasks="tasks" class="visualTask"/>
+    <header>
+      <img src="./assets/logo.png"/>
+      <InputTask @set="addTask"/>
+      <hr />
+    </header>
+    <div class="contents">
+      <div class="leftArea content">
+        <div class="visualTaskArea">
+          <Clock />
+          <VisualTask v-bind:tasks="tasks" class="visualTask"/>
+        </div>
+      </div>
+      <div class="rightArea content">
+        <div class="taskDetailArea">
+          <TaskList v-bind:tasks="tasks" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -47,8 +59,19 @@ export default {
 }
 .visualTaskArea {
   position: relative;
-  top: -500px;
   width: 500px;
   margin: 0 auto;
+}
+.visualTask {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.contents .content{
+  display: inline-block;
+}
+.rightArea {
+  margin-left: 20px;
+  vertical-align: top;
 }
 </style>

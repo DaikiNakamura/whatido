@@ -1,23 +1,25 @@
 <template>
   <div id="inputForm">
     <p class="error">{{ errorMessage }}</p>
-    <input type="text" v-model="taskName"/>
-    <select v-model="fromHour">
+    <input class="input" type="text" v-model="taskName"/>
+    <select class="input" v-model="fromHour">
       <option v-for="n in 12">{{ ('0' + n).slice(-2) }}</option>
     </select>
     :
-    <select v-model="fromMinute">
-      <option v-for="n in 60">{{ ('0' + (n - 1)).slice(-2) }}</option>
+    <select class="input" v-model="fromMinute">
+      <option>00</option>
+      <option>30</option>
     </select>
     ～
-    <select v-model="toHour">
+    <select class="input" v-model="toHour">
       <option v-for="n in 12">{{ ('0' + n).slice(-2) }}</option>
     </select>
     :
-    <select v-model="toMinute">
-      <option v-for="n in 60">{{ ('0' + (n - 1)).slice(-2) }}</option>
+    <select class="input" v-model="toMinute">
+      <option>00</option>
+      <option>30</option>
     </select>
-    <button v-on:click="addTask">Add Task</button>
+    <button class="button" v-on:click="addTask">Add Task</button>
   </div>
 </template>
 
@@ -36,10 +38,6 @@
     },
     methods: {
       addTask: function () {
-        let valid = this.isInRange(this.fromHour, this.fromMinute, this.toHour, this.toMinute)
-        if (!valid) {
-          return
-        }
         let from = this.fromHour + this.fromMinute
         let to = this.toHour + this.toMinute
         let color = '#' + Math.floor(Math.random() * 16777215).toString(16)
@@ -50,17 +48,6 @@
           color: color
         })
         this.taskName = ''
-      },
-      isInRange: function (fromHour, fromMinute, toHour, toMinute) {
-        let fromTotalMinute = parseInt(fromHour) * 60 + parseInt(fromMinute)
-        let toTotalMinute = parseInt(toHour) * 60 + parseInt(toMinute)
-        if (toTotalMinute - fromTotalMinute > 90) {
-          this.errorMessage = '人間の集中力は90分しか持たないぜ・・・タスク分割してみよう！'
-          return false
-        } else {
-          this.errorMessage = ''
-        }
-        return true
       }
     }
   }
@@ -68,8 +55,32 @@
 
 
 <style>
-.error {
-  color: #F00;
-  font-weight: bold;
-}
+  .input {
+    padding: 10px;
+    font-size: 1.3em;
+    font-family: Arial, sans-serif;
+    color: #555;
+    border: solid 1px #CCC;
+    margin: 0 0 20px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+  }
+
+  .input:focus {
+    border: solid 1px #EEA34A;
+  }
+
+  .button {
+    padding: 10px;
+    font-size: 1.3em;
+    font-family: Arial, sans-serif;
+    color: #555;
+    border: solid 1px #555;
+    background-color: #CCC;
+  }
+  .button:hover {
+    background-color: #555;
+    color: #FFF;
+  }
 </style>

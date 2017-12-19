@@ -39,6 +39,7 @@
     transform-origin: left top;
     transform: rotate(40deg);
     animation: tick 43200s infinite linear;
+    z-index: 9999;
   }
 
   .clock span {
