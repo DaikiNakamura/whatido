@@ -43,7 +43,7 @@
       addTask: function () {
         let from = this.fromHour + this.fromMinute
         let to = this.toHour + this.toMinute
-        let color = '#' + Math.floor(Math.random() * 16777215).toString(16)
+        let color = this.getRandomColor()
         this.tasks.push({
           taskName: this.taskName,
           from: from,
@@ -63,6 +63,12 @@
       },
       createUrlParam: function () {
         return '?' + encodeURIComponent(JSON.stringify(this.tasks))
+      },
+      getRandomColor: function () {
+        let r = ('0' + Math.floor(Math.random() * 255).toString(16)).slice(-2)
+        let g = ('0' + Math.floor(Math.random() * 255).toString(16)).slice(-2)
+        let b = ('0' + Math.floor(Math.random() * 255).toString(16)).slice(-2)
+        return '#' + r + g + b
       }
     }
   }
