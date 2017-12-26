@@ -2,7 +2,7 @@
   <div id="app">
     <header>
       <img src="./assets/logo.png"/>
-      <InputTask @set="addTask"/>
+      <InputTask v-bind:tasks="tasks" @remove="removeTasks" />
       <hr />
     </header>
     <div class="contents">
@@ -43,7 +43,14 @@ export default {
   methods: {
     addTask: function (data) {
       this.tasks.push(data)
+    },
+    removeTasks: function () {
+      this.tasks = []
     }
+  },
+  created: function () {
+    let dataFromUrlParam = JSON.parse(decodeURIComponent(document.location.search.substring(1)))
+    this.tasks = dataFromUrlParam
   }
 }
 </script>

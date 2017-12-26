@@ -20,12 +20,15 @@
       <option>30</option>
     </select>
     <button class="button" v-on:click="addTask">Add Task</button>
+    <button class="button" v-on:click="saveData">Save</button>
+    <button class="button" v-on:click="resetData">Reset</button>
   </div>
 </template>
 
 <script>
   export default {
     name: 'InputForm',
+    props: ['tasks'],
     data: function () {
       return {
         taskName: '',
@@ -41,7 +44,7 @@
         let from = this.fromHour + this.fromMinute
         let to = this.toHour + this.toMinute
         let color = '#' + Math.floor(Math.random() * 16777215).toString(16)
-        this.$emit('set', {
+        this.tasks.push({
           taskName: this.taskName,
           from: from,
           to: to,
@@ -51,6 +54,15 @@
         this.fromHour = this.toHour
         this.fromMinute = this.toMinute
         this.toHour = this.toHour === '12' ? '01' : ('00' + (parseInt(this.toHour) + 1)).slice(-2)
+      },
+      saveData: function () {
+        window.history.replaceState(null, '', this.createUrlParam())
+      },
+      resetData: function () {
+        this.$emit('remove')
+      },
+      createUrlParam: function () {
+        return '?' + encodeURIComponent(JSON.stringify(this.tasks))
       }
     }
   }
